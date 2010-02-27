@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="utf-8">
+<title>CSS auto-reload</title>
+<link rel="shortcut icon" href="images/icon.png">
+<link rel="stylesheet" href="main.css">
+<link rel="stylesheet" href="http://random-css.heroku.com/colors.css">
+<script src="css_auto-reload.js" async></script>
+<style type="text/css">
+html {
+	-webkit-transition: background-color .3s linear;
+	-moz-transition: background-color .3s linear;
+	-o-transition: background-color .3s linear;
+	font-family: sans-serif;
+}
+p {
+	margin: 0 0 .5em;
+	max-width: 32em;
+	line-height: 1.5em;
+	font-size: 12px;
+}
+a {
+	-webkit-transition: color .3s linear;
+	-moz-transition: color .3s linear;
+	-o-transition: color .3s linear;
+}
+table {
+	width: 100%;
+	border-collapse: collapse;
+	border-spacing: 0;
+	margin: 0;
+}
+td, th {
+	vertical-align: top;
+	border: none;
+	padding-bottom: 1em;
+}
+th {
+	text-align: right;
+	width: 20%;
+	padding-right: 2%;
+}
+tfoot td {
+	text-align: right;
+}
+tfoot td p {
+	display: inline-block;
+	text-align: center;
+	margin-right: 5%;
+	font: italic 14px 'Georgia', sans-serif;
+}
+img {
+	border: none;
+}
+h1, h2, h3 {
+	font-weight: normal;
+	font-family: 'Georgia', serif;
+}
+h1 {
+	font: 3em   normal 'Georgia', serif;
+	text-align: center;
+	margin: 1em 0 .5em;
+}
+h1 img {
+	vertical-align: top;
+}
+h2 {
+	margin: 0;
+}
+h3 {
+	margin: 0 0 .3em;
+}
+.section {
+	margin-bottom: 1em;
+}
+.aside {
+	padding-right: 3%;
+	padding-left: 4%;
+}
+.aside p {
+	display: inline-block;
+	margin: .3em 0;
+	text-align: left;
+	line-height: 1.5em;
+}
+td.aside + td.aside {
+	padding-right: 3%;
+}
+input {
+	width: 5em;
+	text-align: right;
+}
+
+#bookmarks_bar {
+	background: url(images/bookmarks-bar-bg.png) repeat-x 0 0;
+	font: 12px 'Lucida Grande', sans-serif;
+	padding: 2px 4px;
+	margin-bottom: 1em;
+	border-top: 1px solid rgba(0,0,0,.2);
+	border-bottom: 1px solid rgba(0,0,0,.4);
+}
+#bookmarklet {
+	cursor: move;
+	display: inline-block;
+	text-decoration: none;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	padding: 4px 6px 1px 6px;
+	color: black;
+	border: 1px solid transparent;
+	-khtml-user-drag: element;
+}
+#bookmarklet:hover {
+	background: #EEE url(images/bookmark-bg.png) repeat-x 0 0;
+	border-color: #b2b2b2 #b5b5b5 #b6b6b6;
+}
+#bookmarklet img {
+	vertical-align: middle;
+	margin-top: -2px;
+	padding-right: 4px;
+}
+#interval {
+	font-size: inherit;
+	width: 2em;
+}
+#spec h3 {
+	font-family: monospace;
+	font-size: 14px;
+}
+#spec h3 a {
+	text-decoration: none;
+	border-bottom: 1px solid;
+}
+
+.analogs-row td {
+	padding-bottom: 0;
+}
+.analogs-row table {
+	width: auto;
+}
+.analogs-row table td {
+	padding-right: 5%;
+}
+.analogs-row p {
+	text-align: left;
+}
+kbd {
+	display: inline-block;
+	font-size: 24px;
+	background-color: #E6E6E6;
+	padding: .5em;
+	border: 1px solid #F6F6F6;
+	border-bottom-color: #FFF;
+	border-radius: 5px;
+	-webkit-box-shadow: black 0 1px 4px;
+}
+</style>
+</head>
+<body>
+<h1>CSS auto-reload</h1>
+<table class="layout">
+	<tbody>
+	<tr>
+		<th>
+			<h2>Bookmarklet</h2>
+		</th>
+		<td>
+			<div id="bookmarks_bar">
+				<a id="bookmarklet" href="javascript:(function(){
+	function start(){
+		document.styleSheets.start_autoreload(1000);
+		var icon_on = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAW0lEQVR42u2QQQqAQAgA/ZMP9B2+dmoJxKJ2MaFThwEVHUVRVXYMkBWjN3IXAzmKFfIwHoI6uIB8fcHjD+AscnfL9dljI7jb1BFkrCy4Ni0FY0tXQEcQ/IJ3gg1Cp3TXEL+4kwAAAABJRU5ErkJgggAA';
+		var icon_off = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAVElEQVR42u2QWQoAIAgFu5MH9Bye9rVA2GJUCH31MSAPHcUAoEBESHCu12hvrbvwGL9AeXrBXjCKRITb3HroFFibHIIOvhZovmYcZq8ADoHyBXeCCKDkeqDJ5u3OAAAAAElFTkSuQmCC';
+		var a = document.createElement('a');
+		a.id = 'css_autoreload';
+		a.style.position = 'fixed';
+		a.style.top = '2px';
+		a.style.right = '4px';
+		a.href = 'javascript:/* document.styleSheets.stop_autoreload() */';
+		var img = document.createElement('img');
+		img.src = icon_on;
+		a.onclick = function(){
+			if (document.styleSheets.start_autoreload.running) {
+				document.styleSheets.stop_autoreload();
+				img.src = icon_off;
+				a.href = 'javascript:/*document.styleSheets.start_autoreload()*/';
+			} else {
+				document.styleSheets.start_autoreload();
+				img.src = icon_on;
+				a.href = 'javascript:/*document.styleSheets.stop_autoreload()*/';
+			}
+		};
+		a.appendChild(img);
+		document.body.appendChild(a);
+		var i = 0;
+		var pewpew = setInterval(function(){
+			if (i>16) {
+				a.style.right = '4px';
+				clearInterval(pewpew);
+			} else {
+				i++;
+				a.style.right = i%2 ? '6px' : '1px';
+			}
+		}, 40);
+	}
+	if(!document.styleSheets.start_autoreload){
+		var script = document.createElement('script');
+		script.src = 'http://nv.github.com/css_auto-reload/css_auto-reload.js';
+		script.onload = start;
+		document.body.appendChild(script);
+	} else if (!document.getElementById('css_autoreload')) {
+		start();
+	}
+})()"><img src="images/icon-active.png">CSS autoreload</a>
+				</div>
+		<p>Reload every <input size="4" type="number" id="interval" value="1.2" step="0.1"> seconds</p>
+		</td>
+	</tr>
+	<tr>
+		<th>
+			<h2>Methods</h2>
+		</th>
+		<td id="spec">
+			<table>
+				<tr>
+					<td>
+						<div class="section" id="reload_first">
+							<h3>document.styleSheets[0].reload()</h3>
+							<p>Reload first stylesheet</p>
+						</div>
+						<div class="section" id="reload">
+							<h3>document.styleSheets.reload()</h3>
+							<p>Reload all stylesheets</p>
+						</div>
+						<div class="section" id="start_autoreload">
+							<h3>document.styleSheets.start_autoreload(2000)</h3>
+							<p>Start reloading all stylesheets every two seconds.</p>
+						</div>
+						<div class="section" id="stop_autoreload">
+							<h3>document.styleSheets.stop_autoreload()</h3>
+							<p>Stop auto-reloading all stylesheets.</p>
+						</div>
+					</td>
+					<td class="aside">
+						<p>
+							Besides bookmarklet, you could include <a href="css_auto-reload.js">css_auto-reload.js</a> directly into your page.
+						</p>
+						<p>
+							Just for testing, this page contain <a href="http://random-css.heroku.com/colors.css">random-css.heroku.com/colors.css</a>.
+						  Every time you load that stylesheet, you've got different colors. So, click on links on the left and see how
+						  CSS auto-reload works.
+						</p>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr class="analogs-row">
+		<th>
+			<h2>Analogs</h2>
+		</th>
+		<td>
+			<table>
+				<tr>
+					<td>
+						<h3><a href="http://github.com/adamlogic/auto_update_stylesheets">auto_update_stylesheets</a></h3>
+						<p>
+							CSS Auto-update is just an improved version of auto_update_stylesheets.
+							Besides auto_update_stylesheets, CSS auto-update updating stylesheets without AJAX calls.
+							It just changed stylesheet URL, which is much faster.
+							(Just changed <code>last_update</code> parameter, actually.)
+						</p>
+						<p>CSS Auto-update does not depend on neather jQuery nor any other JS framework.</p>
+					</td>
+					<td>
+						<h3 class="box-icon">
+							<a href="http://xrefresh.binaryage.com/">
+								XRefresh
+							</a>
+						</h3>
+						<p>
+							<img alt="⟳" width="32" height="32" src="http://xrefresh.binaryage.com/shared/img/xrefresh-icon.png">
+						</p>
+						<p>
+							Sadly, XRefresh <a href="http://github.com/darwin/xrefresh/issues#issue/10">doesn't work</a> for me.
+							This is why I've made CSS auto-reload.
+						</p>
+					</td>
+					<td>
+						<kbd>F5</kbd>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	</tbody>
+	<tfoot>
+		<tr>
+			<th></th>
+			<td>
+				<p>
+					<img src="images/icon_64.png" width="64" height="64"><br>
+					<em>Shoot. Without reloading</em>
+				</p>
+			</td>
+		</tr>
+	</tfoot>
+</table>
+
+<script>
+var bookmarklet = document.getElementById('bookmarklet');
+bookmarklet.build = function buildBookmarklet(miliseconds) {
+	bookmarklet.href = bookmarklet.href.replace(/start_autoreload\(\d+/, 'start_autoreload('+miliseconds);
+};
+
+var interval = document.getElementById('interval');
+interval.oninput = interval.onchange = function(e){
+//	console.info(e);
+	var target = e.target || window.event.srcElement;
+	var miliseconds = parseFloat(target.value.replace(',','.')) * 1000;
+	bookmarklet.build(miliseconds);
+};
+interval.oninput({target: interval});
+
+var methods = document.getElementById('spec').getElementsByTagName('h3');
+for (var i=0; i<methods.length; i++) {
+	methods[i].innerHTML = '<a href="javascript:void('+ methods[i].innerHTML +')">'+ methods[i].innerHTML + '</a>';
+}
+if (window.opera) {
+	// http://twitter.com/ELV1S/status/9643010348
+	interval.style.width = '3.5em';
+	interval.style.height = '1.3em';
+}
+</script>
+</body></html>
