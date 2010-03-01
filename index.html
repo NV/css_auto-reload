@@ -250,11 +250,11 @@ kbd {
 					</td>
 					<td class="aside">
 						<p>
-							Besides bookmarklet, you could include <a href="css_auto-reload.js">css_auto-reload.js</a> directly into your page.
+							Besides bookmarklet you can include <a href="css_auto-reload.js">css_auto-reload.js</a> directly into your page.
 						</p>
 						<p>
-							Just for testing, this page contain <a href="http://random-css.heroku.com/colors.css">random-css.heroku.com/colors.css</a>.
-						  Every time you load that stylesheet, you've got different colors. So, click on links on the left and see how
+							Just for testing this page contains <a href="http://random-css.heroku.com/colors.css">random-css.heroku.com/colors.css</a>.
+						  Every time you load that stylesheet, you will get different colors. So, click on links on the left side and see how
 						  CSS auto-reload works.
 						</p>
 					</td>
@@ -322,7 +322,6 @@ bookmarklet.build = function buildBookmarklet(miliseconds) {
 
 var interval = document.getElementById('interval');
 interval.oninput = interval.onchange = function(e){
-//	console.info(e);
 	var target = e.target || window.event.srcElement;
 	var miliseconds = parseFloat(target.value.replace(',','.')) * 1000;
 	bookmarklet.build(miliseconds);
