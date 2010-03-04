@@ -1,3 +1,2 @@
 # [CSS auto-reload](http://nv.github.com/css_auto-reload/)
-
-![Shoot. Without reloading](http://nv.github.com/css_auto-reload/images/icon_64.png)
+[![Edit CSS, save, see result. No need to reload a whole page](http://nv.github.com/css_auto-reload/images/chuck_norris_approved.png)](http://nv.github.com/css_auto-reload/)
